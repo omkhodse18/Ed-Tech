@@ -1,5 +1,5 @@
-const Course = require('../models/Tags');
-const Tag = require('../models/Tags');
+const Course = require('../models/Category');
+const Tag = require('../models/Category');
 require('dotenv').config();
 const User = require('../models/User');
 const {uploadImageToCloudinary} = require('../utils/imageUploader');
@@ -117,11 +117,11 @@ exports.showAllCourses = async(req, res) =>{
         })
         
     } catch (error) {
-         console.log(error);
+        console.log(error);
         return res.status(500).json({
             success:false,
             message:"Failed to fetch all course",
             error:error.message
-        })
+        });
     }
 }
