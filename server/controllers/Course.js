@@ -125,3 +125,28 @@ exports.showAllCourses = async(req, res) =>{
         });
     }
 }
+
+// getCourseDetails
+
+exports.getCourseDetails = async(req, res) => {
+    try {
+        // Fetch data
+        const {courseId} = req.body;
+
+        // Validation
+        const getCourseDetails = await Course.find({_id:courseId})
+                                                .populate(
+                                                    {
+                                                        path:"instructor",
+                                                        populate:{
+                                                            path:"additionalDetails"
+                                                        }                                                    
+                                                    }
+                                                )
+
+
+        //
+    } catch (error) {
+        
+    }
+}
