@@ -34,7 +34,7 @@ const jwt = require('jsonwebtoken');
         // Check unique otp or not
         const result = await OTP.findOne({otp: otp});
 
-        // OTP already exits, so generate otp until its unique || Brute force
+        // OTP already exits, so generate otp until its unique || {Brute force}
         while(result){
             otp = otpGenerator.generate(6,{
                 upperCaseAlphabets:false,
