@@ -39,7 +39,7 @@ exports.createCourse = async(req, res) =>{
         if(!tagDetails){
             return res.status(404).json({
                 success:false,
-                message:"Instructors details not found."
+                message:"Tag details not found."
             });
         }
 
