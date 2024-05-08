@@ -4,7 +4,7 @@ const SubSection = require('../models/SubSection');
 const Section = require('../models/Section');
 
 // Create subsection
-exports.createSubSection = async(req, res) =>{
+exports.createSubSection = async(req, res) => {
     try {
         // Fetch data
         const {sectionId, title, timeDuration, description} = req.body;
