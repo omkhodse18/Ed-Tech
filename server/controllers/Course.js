@@ -127,14 +127,13 @@ exports.showAllCourses = async(req, res) =>{
 }
 
 // getCourseDetails
-
 exports.getCourseDetails = async(req, res) => {
     try {
         // Fetch data
         const {courseId} = req.body;
 
         // Validation
-        const getCourseDetails = await Course.find({_id:courseId})
+        const courseDetails = await Course.find({_id:courseId})
                                                 .populate(
                                                     {
                                                         path:"instructor",
@@ -143,10 +142,35 @@ exports.getCourseDetails = async(req, res) => {
                                                         }                                                    
                                                     }
                                                 )
+                                                .populate("category")
+                                                .populate("ratingAndreviews")
+                                                .populate({
+                                                    path:"courseContent",
+                                                    populate:{
+                                                        path:"subSection",
+                                                    }
+                                                })
+                                                .exec();
 
+        //Validation
+        if(!courseDetails){
+            return res.status(400).json({
+                success:false,
+                message:`Could not find the course with ${courseId}`
+            })
+        }
 
-        
+        //return res
+        return res.status(200).json({
+            success:true,
+            message:`Course details fetched successfully`,
+            data: courseDetails
+        })
     } catch (error) {
-        
+        console.log(error);
+        return res.status(500).json({
+            success:false,
+            message:error.message
+        });
     }
 }
