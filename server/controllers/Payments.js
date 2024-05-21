@@ -8,7 +8,7 @@ const { default: mongoose } = require('mongoose');
 // Capture the payment and initiate the Razorpay order
 exports.capturePayment = async(req, res) => {
     
-    // Get course id and user id
+    // Get course_id and user id
     const {course_id} = req.body;
     const userId = req.user.id;
 
@@ -171,8 +171,4 @@ exports.verifySignature = async(req, res) => {
             message:"Invalid request"
         });
     }
-
-
-
-
 }
