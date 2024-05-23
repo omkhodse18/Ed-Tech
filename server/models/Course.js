@@ -5,9 +5,9 @@ const courseSchema = new mongoose.Schema({
         type:String,
     },
 
-    timeDuration:{
-        type:String,
-    },
+    // timeDuration:{
+    //     type:String,
+    // },
 
     courseDescription:{
         type:String,
@@ -47,8 +47,8 @@ const courseSchema = new mongoose.Schema({
     },
 
     tag:{
-        type:mongoose.Schema.Types.ObjectId,
-        ref:"Tag",
+        type: [String],
+		required: true,
     },
 
     studentsEnrolled:[
@@ -57,7 +57,22 @@ const courseSchema = new mongoose.Schema({
             required:true,
             ref:"User",
         }
-    ]
+    ],
+
+    category: {
+		type: mongoose.Schema.Types.ObjectId,
+		// required: true,
+		ref: "Category",
+	},
+    
+    instructions: {
+		type: [String],
+	},
+
+	status: {
+		type: String,
+		enum: ["Draft", "Published"],
+	},
     
 });
 
