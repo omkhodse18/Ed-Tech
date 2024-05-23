@@ -1,8 +1,5 @@
 require('dotenv').config();
 const User = require('../models/User');
-const OTP = require('../models/OTP');
-const otpGenerator = require('otp-generator');
-const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
 // auth
@@ -10,7 +7,7 @@ exports.auth = async(req, res, next) => {
     try {
         // Extract token
         const token = req.cookies.token 
-        || req.body 
+        || req.body.token
         || req.header("Authorization").replace("Bearer ", "");
 
         // Token is missing
